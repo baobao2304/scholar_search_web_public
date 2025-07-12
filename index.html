@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -9,12 +10,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
     /* === CSS CHUNG === */
-    html {
-        height: 100%;
+    html, body {
+        background-color: #fff;
     }
 
     body {
@@ -24,25 +25,105 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
-        background: #fff;
     }
 
-    .main-content {
+    main.main-content {
         flex: 1;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        padding: 20px 0; /* Thêm khoảng đệm cho nội dung chính */
+        padding: 40px 0 0 0;
     }
 
-    /* === CSS CHO CAROUSEL (TRÌNH CHIẾU) === */
+    .content-wrapper {
+        width: 100%;
+        max-width: 900px;
+        padding: 0 20px;
+        margin-bottom: 40px;
+    }
+
+    /* === CSS CHO TIÊU ĐỀ === */
+    .title-container {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .title-container h1 {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        color: rgb(10, 55, 99);
+        position: relative;
+        display: inline-block;
+        padding-bottom: 20px;
+        margin-bottom: 0;
+    }
+
+    .title-container h1::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgb(84, 193, 255);
+        height: 12px;
+        width: 110%;
+    }
+
+    /* === CSS CHO LOGO === */
+    .logo-container {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .logo-container img {
+        max-height: 100px;
+        width: auto;
+    }
+
+    /* === CSS CHO HERO TEXT === */
+    .hero-text-container {
+        margin-bottom: 25px;
+    }
+
+    .hero-text-container h2 {
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-line-1 {
+        color: rgb(19, 83, 147);
+    }
+
+    .hero-line-2 {
+        color: #212529;
+    }
+
+    /* === CSS CHO SUBTITLE === */
+    .subtitle-container {
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+    }
+
+    .hero-subtitle {
+        font-family: 'Oswald', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        color: #5a5a5a;
+        line-height: 1.6;
+    }
+
+    /* === CSS CHO CAROUSEL === */
+    .carousel-section {
+        margin-bottom: 40px;
+    }
     .carousel {
-        width: 80%;
+        width: 100%;
         max-width: 900px;
         height: 500px;
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: height 0.3s ease;
     }
 
     .carousel-item {
@@ -52,7 +133,7 @@
     .carousel-item img {
         width: 100%;
         height: 100%;
-        object-fit: contain; /* Dùng contain để ảnh không bị méo */
+        object-fit: contain;
         background-color: #f8f9fa;
     }
 
@@ -61,115 +142,258 @@
         filter: invert(1) grayscale(100) brightness(0.5);
     }
 
-    /* === CSS CHO FOOTER (CHÂN TRANG) === */
+    /* === CSS CHO PHẦN CHỌN PHIÊN BẢN === */
+    .version-choice-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .version-choice-section .section-heading {
+        font-family: 'Oswald', sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 30px;
+    }
+
+    .version-container {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+    }
+
+    .version-box {
+        flex: 1 1 250px;
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #eef2f3, #e6e9f0);
+        border-radius: 15px;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .version-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .version-box .icon {
+        display: block;
+        font-size: 40px;
+        margin: 0 auto 15px;
+    }
+
+    .version-box .icon-img {
+        display: block;
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 15px;
+    }
+
+    .version-box .label {
+        font-family: 'Roboto', sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* === CSS CHO SMART JOURNAL FINDER === */
+    .features-section {
+        background-color: #f8f9fa;
+        width: 100%;
+        padding: 60px 0;
+        margin-top: 60px;
+    }
+
+    .features-title {
+        text-align: center;
+        font-family: 'Oswald', sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: rgb(59, 120, 216);
+        margin-bottom: 50px;
+    }
+
+    .feature-box {
+        text-align: center;
+        padding: 15px;
+    }
+
+    .feature-box img {
+        /* THAY ĐỔI KÍCH THƯỚC ẢNH TẠI ĐÂY */
+        height: 120px;
+        width: auto;
+        margin-bottom: 25px;
+    }
+
+    .feature-box h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 29px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .feature-box p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        color: #6c757d;
+        line-height: 1.8;
+    }
+
+
+    /* === CSS CHO FOOTER === */
     .site-footer {
         background-color: #ffffff;
         border-top: 1px solid #dee2e6;
-        padding: 40px 0 0 0; /* Bỏ padding-bottom để footer-bottom kiểm soát */
+        padding: 40px 0 0 0;
         font-size: 16px;
         width: 100%;
     }
+    /* Các CSS footer khác giữ nguyên */
+    .footer-container {max-width: 1140px;margin: 0 auto;padding: 0 20px;display: flex;flex-wrap: wrap;justify-content: space-between;}
+    .footer-section {flex: 1;min-width: 250px;margin-bottom: 30px;padding: 0 15px;}
+    .footer-section h3 {font-size: 18px;font-weight: 700;color: #212529;margin-bottom: 20px;}
+    .footer-section p, .footer-section ul {line-height: 1.7;}
+    .footer-section ul {list-style: none;padding: 0;margin: 0;}
+    .footer-section ul li {margin-bottom: 12px;display: flex;align-items: flex-start;}
+    .footer-section ul li i {margin-right: 12px;margin-top: 5px;width: 18px;text-align: center;color: #0d6efd;}
+    .footer-section a {color: #0d6efd;text-decoration: none;transition: text-decoration 0.2s;}
+    .footer-section a:hover {text-decoration: underline;}
+    .social-icons a {color: #495057;margin-right: 15px;font-size: 20px;transition: color 0.2s;}
+    .social-icons a:hover {color: #0d6efd;}
+    .footer-bottom {text-align: center;padding: 20px 0;margin-top: 20px;border-top: 1px solid #dee2e6;color: #6c757d;font-size: 14px;}
 
-    .footer-container {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+
+    /* === RESPONSIVE CSS === */
+    @media (max-width: 992px) {
+        .feature-box img {
+            height: 100px; /* Chỉnh lại size ảnh trên tablet */
+        }
     }
 
-    .footer-section {
-        flex: 1;
-        min-width: 250px;
-        margin-bottom: 30px;
-        padding: 0 15px;
+    @media (max-width: 768px) {
+        .carousel {
+            height: 350px;
+        }
+        .logo-container img {
+            max-height: 80px;
+        }
+        .hero-subtitle {
+            font-size: 16px;
+        }
+        .feature-box h3 {
+            font-size: 24px;
+        }
+        .feature-box img {
+            height: 90px; /* Chỉnh lại size ảnh trên mobile */
+        }
     }
 
-    .footer-section h3 {
-        font-size: 18px;
-        font-weight: 700;
-        color: #212529;
-        margin-bottom: 20px;
+    @media (max-width: 576px) {
+        .carousel {
+            height: 250px;
+        }
+        .logo-container img {
+            max-height: 60px;
+        }
+        .version-choice-section .section-heading {
+            font-size: 1.75rem;
+        }
+        .version-box .label {
+            font-size: 16px;
+        }
     }
 
-    .footer-section p {
-        line-height: 1.7;
-        margin-bottom: 20px;
-    }
-
-    .footer-section ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .footer-section ul li {
-        margin-bottom: 12px;
-        display: flex;
-        align-items: flex-start;
-    }
-
-    .footer-section ul li i {
-        margin-right: 12px;
-        margin-top: 5px;
-        width: 18px;
-        text-align: center;
-        color: #0d6efd;
-    }
-
-    .footer-section a {
-        color: #0d6efd;
-        text-decoration: none;
-        transition: text-decoration 0.2s;
-    }
-
-    .footer-section a:hover {
-        text-decoration: underline;
-    }
-
-    .social-icons a {
-        color: #495057;
-        margin-right: 15px;
-        font-size: 20px;
-        transition: color 0.2s;
-    }
-
-    .social-icons a:hover {
-        color: #0d6efd;
-    }
-
-    .footer-bottom {
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 20px;
-        border-top: 1px solid #dee2e6;
-        color: #6c757d;
-        font-size: 14px;
-    }
   </style>
 </head>
 <body>
 
 <main class="main-content">
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/3c62adc3-e772-49d4-a974-b7962e5c8107.jpeg?raw=true" alt="Image 1">
-            </div>
-            <div class="carousel-item">
-                <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/Screenshot%202025-07-09%20at%2021.24.05.png?raw=true" alt="Image 2">
+    <div class="content-wrapper">
+        <div class="title-container">
+            <h1 class="display-4">Journal Data Mining</h1>
+        </div>
+
+        <div class="logo-container">
+            <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/COSARI_FINAL.png?raw=true" alt="COSARI Logo">
+        </div>
+
+        <div class="hero-text-container text-center">
+            <h2 class="display-3 fw-normal hero-line-1">FIND THE JOURNAL</h2>
+            <h2 class="display-3 fw-normal hero-line-2">WHERE YOUR RESEARCH BELONGS</h2>
+        </div>
+
+        <div class="subtitle-container text-center">
+            <p class="hero-subtitle">An intelligent platform that helps researchers find the most suitable journals for their scientific work using data-driven insights on relevance, impact and publishing history</p>
+        </div>
+
+        <div class="carousel-section">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/3c62adc3-e772-49d4-a974-b7962e5c8107.jpeg?raw=true" alt="Image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/Screenshot%202025-07-09%20at%2021.24.05.png?raw=true" alt="Image 2">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+
+        <div class="version-choice-section">
+            <h2 class="section-heading">Choose Your Version</h2>
+            <div class="version-container">
+                <div class="version-box" onclick="window.open('https://script.google.com/macros/s/AKfycbxBpenJIg8IUOr8NskPZVcDVThZ5MmC-e_KsylQ0Etu8jU_1AAqPHUOG8Ld7NWlcXzGhw/exec', '_blank')">
+                    <div class="icon">🌐</div>
+                    <div class="label">Version for Web</div>
+                </div>
+                <div class="version-box" onclick="window.open('https://drive.google.com/file/d/1opq38LaPQYolBhBRq8iTCasLgimfT2Dl/view?usp=sharing', '_blank')">
+                    <img class="icon-img" src="https://img.icons8.com/fluency/96/windows-10.png" alt="Windows 10 Logo"/>
+                    <div class="label">Version for Windows</div>
+                </div>
+            </div>
+        </div>
+    </div> <section class="features-section">
+    <div class="container">
+        <h2 class="features-title">Smart Journal Finder — Discover Trusted Sources Instantly</h2>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box">
+                    <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/feedback.png?raw=true" alt="Real-Time Lookup Icon">
+                    <h3>Real-Time Journal Lookup Made Easy</h3>
+                    <p>Quickly search and access up-to-date information on academic and professional journals in real time. Instantly retrieve details such as journal titles, subject areas, publishers, and more — helping researchers, librarians, and professionals stay informed about the latest publications across all fields.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box">
+                    <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/table_dataset.png?raw=true" alt="Chart & Table Icon">
+                    <h3>Clear and Organized Chart & Table System.</h3>
+                    <p>Easily manage and present complex data with a structured system of charts and tables. Designed for clarity and quick recognition, this solution helps users visualize trends, compare metrics, and make informed decisions with ease — all through a clean, intuitive, and well-organized layout.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box">
+                    <img src="https://github.com/baobao2304/image_storage/blob/main/image_schoolar_search/google-gemini-icon.png?raw=true" alt="Trusted Data Icon">
+                    <h3>Trusted Journal Data from Web of Science and Scopus</h3>
+                    <p>Access authoritative and up-to-date journal information sourced directly from globally recognized databases — Web of Science by Clarivate (USA) and Scopus by Elsevier (Netherlands). Ensure the credibility of your research with verified data on journals, publishers, subject areas, and indexing status from the world’s most trusted academic platforms.</p>
+                </div>
+            </div>
+        </div>
     </div>
+</section>
+
 </main>
 
 <footer class="site-footer">
@@ -186,22 +410,10 @@
         <div class="footer-section contact-info">
             <h3>Contacts</h3>
             <ul>
-                <li>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>69/68 Đặng Thùy Trâm, P.13, Q. Bình Thạnh, TPHCM</span>
-                </li>
-                <li>
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+84938354240">+84 938 354 240</a>
-                </li>
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:duy.lk@vlu.edu.vn">duy.lk@vlu.edu.vn</a>
-                </li>
-                <li>
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:ks.lykhuongduy@gmail.com">ks.lykhuongduy@gmail.com</a>
-                </li>
+                <li><i class="fas fa-map-marker-alt"></i><span>69/68 Đặng Thùy Trâm, P.13, Q. Bình Thạnh, TPHCM</span></li>
+                <li><i class="fas fa-phone"></i><a href="tel:+84938354240">+84 938 354 240</a></li>
+                <li><i class="fas fa-envelope"></i><a href="mailto:duy.lk@vlu.edu.vn">duy.lk@vlu.edu.vn</a></li>
+                <li><i class="fas fa-envelope"></i><a href="mailto:ks.lykhuongduy@gmail.com">ks.lykhuongduy@gmail.com</a></li>
             </ul>
         </div>
     </div>
@@ -213,3 +425,4 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+```
